@@ -1,0 +1,17 @@
+<%= form_for(@activity) do |f| %>
+  <div class="row">
+      <div class="large-4 columns">
+        <%= f.label :start %>
+        <%= f.text_field :start, autocomplete: "off", class: "form-control"  %>
+      </div>
+
+      <div class="large-4 columns">
+        <%= f.label :destination %>
+        <%= f.text_field :destination, autocomplete: "off" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Submit", class: "button primary"  %>
+      </div>
+  </div>
+<% end %>

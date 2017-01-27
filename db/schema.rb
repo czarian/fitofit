@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170126140709) do
+ActiveRecord::Schema.define(version: 20170127145814) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "start"
     t.string   "destination"
-    t.string   "distance"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.float    "distance",    default: 0.0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.float    "start_lat",   default: 0.0
+    t.float    "start_lon",   default: 0.0
+    t.float    "dest_lat",    default: 0.0
+    t.float    "dest_lon",    default: 0.0
   end
 
 end

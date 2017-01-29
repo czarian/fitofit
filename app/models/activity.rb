@@ -1,8 +1,12 @@
 class Activity < ApplicationRecord
-  validates :start, presence: :true, length: {minimum: 10},
+
+  belongs_to :user
+
+  validates :start, :destination, presence: :true, length: {minimum: 10},
             format: { :with => /\A([a-zA-ZąćęłóńśźżĄĆĘŁÓŚŹŻ\s])+([a-zA-ZĄĆĘŁÓŚŹŻ0-9\s])+(,\s)+([a-zA-ZĄĆĘŁÓŚŹŻ])+(,\s)+([a-zA-ZĄĆĘŁÓŚŹŻ0-9\s])+\Z/ }
 
   validate :check_if_exists
+
   after_validation :geocode_endpoints
 
   before_save :set_distance
@@ -10,6 +14,8 @@ class Activity < ApplicationRecord
   scope :this_week, -> {  where("created_at >= ?", Time.zone.now.beginning_of_week) }
 
   scope :this_month, -> { where("created_at >= ?", Time.zone.now.beginning_of_month) }
+
+  scope :by_user, ->(user){ where(user_id: user)}
 
 
   private

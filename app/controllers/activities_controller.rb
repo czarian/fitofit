@@ -1,10 +1,13 @@
 class ActivitiesController < ApplicationController
+
+  before_action :authenticate_user!
+
   def index
 
     if params[:month]
-      @activities = Activity.this_month.group_by_day(:created_at).sum(:distance)
+      @activities = Activity.this_month.by_user(current_user).group_by_day(:created_at).sum(:distance)
     else
-      @activities = Activity.this_week
+      @activities = Activity.this_week.by_user(current_user)
     end
 
 
@@ -20,6 +23,7 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new activity_params
+    @activity.user = current_user
     if @activity.save
       redirect_to @activity
     else

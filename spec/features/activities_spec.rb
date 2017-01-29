@@ -2,12 +2,15 @@ require 'rails_helper'
 
 RSpec.describe 'activities', type: :feature  do
 
+  let(:user){User.create(email: "cos@gmail.com", password: "password")}
   context 'Create new activities' do
 
     let(:start){'plac defilad 1, Warszawa, Polska'}
     let(:destination){'Plac zamkowy 1, Warszawa, Polska'}
 
+
     before(:each) do
+      login_as(user, scope: :user)
       visit new_activity_path
     end
 
@@ -80,16 +83,19 @@ RSpec.describe 'activities', type: :feature  do
   context 'View statistics' do
 
     before :each do
+      login_as(user, scope: :user)
       activity = Activity.new
 
       activity.start = 'Plac defilad 1, Warszawa, Polska'
       activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+      activity.user = user
       activity.save
 
       activity = Activity.new
 
       activity.start = 'Plac defilad 1, Warszawa, Polska'
       activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+      activity.user = user
       activity.save
 
 
@@ -97,6 +103,7 @@ RSpec.describe 'activities', type: :feature  do
 
       activity.start = 'Plac defilad 1, Warszawa, Polska'
       activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+      activity.user = user
       activity.created_at = 2.week.ago.utc
       activity.save
 

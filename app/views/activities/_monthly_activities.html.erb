@@ -1,0 +1,24 @@
+<div class="row top-buffer">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <td>Day</td>
+          <td>Distance</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% activities.each do |key, val| %>
+          <% if val > 0 %>
+            <tr>
+              <td><%= key.strftime "%e. %B" %></td>
+              <td><%= val %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to "Show by week", root_path %>
+
+</div>

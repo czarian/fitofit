@@ -1,2 +1,9 @@
-<h1>Activities#index</h1>
-<p>Find me in app/views/activities/index.html.erb</p>
+<div class="row top-buffer">
+  <span>Your distance is: <%= @distance %></span>
+  <% if params[:month] %>
+    <%= render 'monthly_activities', activities: @activities %>
+  <% else %>
+    <%= render 'weekly_activities', activities: @activities %>
+  <% end %>
+
+</div>

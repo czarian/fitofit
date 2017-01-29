@@ -77,4 +77,45 @@ RSpec.describe 'activities', type: :feature  do
 
   end
 
+  context 'View statistics' do
+
+    before :each do
+      activity = Activity.new
+
+      activity.start = 'Plac defilad 1, Warszawa, Polska'
+      activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+      activity.save
+
+      activity = Activity.new
+
+      activity.start = 'Plac defilad 1, Warszawa, Polska'
+      activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+      activity.save
+
+
+      activity = Activity.new
+
+      activity.start = 'Plac defilad 1, Warszawa, Polska'
+      activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+      activity.created_at = 2.week.ago.utc
+      activity.save
+
+    end
+
+    it 'Show statistics from this week' do
+
+      visit root_path
+
+      expect(page).to have_content "1.7"
+    end
+
+    it 'Show statistics from this month, grouped by day' do
+
+      visit root_path month: true
+
+      expect(page).to have_content "3.4"
+    end
+
+  end
+
 end

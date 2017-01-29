@@ -5,12 +5,12 @@ class Activity < ApplicationRecord
   validate :check_if_exists
   after_validation :geocode_endpoints
 
-  #after_validation :geocode
   before_save :set_distance
 
+  scope :this_week, -> {  where("created_at >= ?", Time.zone.now.beginning_of_week) }
 
-  #geocoded_by :start, latitude: :start_lat, longitude: :start_lon
-  #geocoded_by :destination, latitude: :dest_lat, longitude: :dest_lon
+  scope :this_month, -> { where("created_at >= ?", Time.zone.now.beginning_of_month) }
+
 
   private
 

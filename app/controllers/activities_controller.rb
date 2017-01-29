@@ -1,5 +1,13 @@
 class ActivitiesController < ApplicationController
   def index
+
+    if params[:month]
+      @activities = Activity.this_month.group_by_day(:created_at).sum(:distance)
+    else
+      @activities = Activity.this_week
+    end
+
+
   end
 
   def show

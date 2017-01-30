@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :activities, except: [:update]
+  resources :activities, except: [:update, :destroy]
 
   root to: 'activities#index'
 

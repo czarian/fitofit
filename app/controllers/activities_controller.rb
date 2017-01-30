@@ -36,11 +36,6 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def delete
-  end
-
-
-
   private
 
     def activity_params

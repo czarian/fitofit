@@ -1,7 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "Creation user, and his activities"
+puts "user email is 'test@test.com', password is 'password'"
+
+user = User.find_or_create_by email: "test@test.com" do |user|
+  user.password = "password"
+end
+
+activity = Activity.new
+
+activity.start = 'Plac defilad 1, Warszawa, Polska'
+activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+activity.user = user
+activity.save
+
+activity = Activity.new
+
+activity.start = 'Krakowskie przedmieście 2, Warszawa, Polska'
+activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+activity.user = user
+activity.save
+
+
+activity = Activity.new
+
+activity.start = 'Plac trzech krzyży 1, Warszawa, Polska'
+activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+activity.user = user
+activity.created_at = 2.week.ago.utc
+activity.save
+
+activity = Activity.new
+
+activity.start = 'Plac grzybowski 2, Warszawa, Polska'
+activity.destination = 'Plac zamkowy 1, Warszawa, Polska'
+activity.user = user
+activity.created_at = 2.days.ago.utc
+activity.save
+
+puts "Seeds generated"

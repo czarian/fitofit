@@ -120,7 +120,7 @@ RSpec.describe 'activities', type: :feature  do
 
       visit root_path month: true
 
-      expect(page).to have_content "3.4"
+      expect(page).to have_content "3.5"
     end
 
   end

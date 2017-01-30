@@ -3,7 +3,7 @@ class Activity < ApplicationRecord
   belongs_to :user
 
   validates :start, :destination, presence: :true, length: {minimum: 10},
-            format: { :with => /\A([a-zA-ZąćęłóńśźżĄĆĘŁÓŚŹŻ\s])+([a-zA-ZĄĆĘŁÓŚŹŻ0-9\s])+(,\s)+([a-zA-ZĄĆĘŁÓŚŹŻ])+(,\s)+([a-zA-ZĄĆĘŁÓŚŹŻ0-9\s])+\Z/ }
+            format: { :with => /\A([a-zA-ZąćęłóńśźżĄĆĘŁÓŚŹŻ\s])+([a-zA-ZąćęłóńśźżĄĆĘŁÓŚŹŻ0-9\s])+(,\s)+([a-zA-ZąćęłóńśźżĄĆĘŁÓŚŹŻ])+(,\s)+([a-zA-ZąćęłóńśźżĄĆĘŁÓŚŹŻ0-9\s])+\Z/ }
 
   validate :check_if_exists
 
@@ -16,6 +16,10 @@ class Activity < ApplicationRecord
   scope :this_month, -> { where("created_at >= ?", Time.zone.now.beginning_of_month) }
 
   scope :by_user, ->(user){ where(user_id: user)}
+
+  def round_distance
+    distance.round(2)
+  end
 
 
   private

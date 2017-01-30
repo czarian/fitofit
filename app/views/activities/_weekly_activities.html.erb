@@ -1,21 +1,19 @@
-<div class="row top-buffer">
-    <table class="table">
-      <thead>
-        <tr>
-          <td>Day</td>
-          <td>Distance</td>
-        </tr>
-      </thead>
-      <tbody>
-        <% activities.each do |activity| %>
-            <tr>
-              <td><%= link_to activity.created_at.strftime("%e. %B"), activity_path(activity) %></td>
-              <td><%= link_to activity.distance, activity_path(activity) %></td>
-            </tr>
-        <% end %>
-      </tbody>
-    </table>
+<table class="table">
+  <thead>
+    <tr>
+      <td>Day</td>
+      <td>Distance</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% activities.each do |activity| %>
+      <tr>
+        <td><%= link_to activity.created_at.strftime("%e. %B"), activity_path(activity) %></td>
+        <td><%= link_to activity.round_distance, activity_path(activity) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-    <%= link_to "Show by month", root_path(month: true) %>
+<%= link_to "Show by month", root_path(month: true) %>
 
-</div>

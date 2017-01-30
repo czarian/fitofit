@@ -10,6 +10,11 @@ class ActivitiesController < ApplicationController
       @activities = Activity.this_week.by_user(current_user)
     end
 
+    if @activities.count < 1
+      @activity = Activity.new
+      flash[:notice] = "You don't have activities. Make a new one."
+      render 'new'
+    end
 
   end
 

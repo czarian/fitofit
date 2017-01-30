@@ -1,9 +1,11 @@
-<div class="row top-buffer">
-  <span>Your distance is: <%= @distance %></span>
-  <% if params[:month] %>
-    <%= render 'monthly_activities', activities: @activities %>
-  <% else %>
-    <%= render 'weekly_activities', activities: @activities %>
-  <% end %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-3">
+    <% if params[:month] %>
+      <%= render 'monthly_activities', activities: @activities %>
+    <% else %>
+      <%= render 'weekly_activities', activities: @activities %>
+    <% end %>
+
+  </div>
 
 </div>
